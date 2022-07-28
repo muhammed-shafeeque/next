@@ -1,10 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminDashboardComponent } from './shared/layout/admin-dashboard/admin-dashboard.component';
 
-const routes: Routes = [];
+export const AppRoutingModule: Routes = [
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+  {
+    path : '',
+    component : AdminDashboardComponent,
+    children : [
+      {
+        path : 'dashboard',
+        loadChildren : () => import('./view/dashboard/dashboard.module').then((m : any) =>m.DashboardModule)
+      }
+    ]
+  }
+
+];
+
+
